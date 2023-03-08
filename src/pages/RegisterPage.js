@@ -41,7 +41,6 @@ let cityOk = true;
 let countryOk = true;
 let houseNumberOk = true;
 let phoneNumberOk = true;
-let businessOK = true;
 
 window.addEventListener("load", () => {
   //when page loaded
@@ -135,9 +134,6 @@ inputHouseNumber.addEventListener("input", () => {
 
 inputPhoneNumber.addEventListener("input", () => {
   checkPhoneNumberInput();
-});
-BusinessButton.addEventListener("change", () => {
-  checkIfBusiness();
 });
 
 const checkFirstNameInput = () => {
@@ -387,11 +383,6 @@ const checkPhoneNumberInput = () => {
   checkIfCanEnableBtn();
 };
 
-const checkIfBusiness = () => {
-  businessOK = BusinessButton.checked;
-  checkIfCanEnableBtn();
-};
-
 const checkIfCanEnableBtn = () =>
   (RegisterBtn.disabled = !(
     firstNameOk &&
@@ -405,8 +396,7 @@ const checkIfCanEnableBtn = () =>
     cityOk &&
     countryOk &&
     houseNumberOk &&
-    phoneNumberOk &&
-    businessOK
+    phoneNumberOk
   ));
 
 RegisterBtn.addEventListener("click", () => {
@@ -423,8 +413,7 @@ RegisterBtn.addEventListener("click", () => {
       cityOk &&
       countryOk &&
       houseNumberOk &&
-      phoneNumberOk &&
-      businessOK
+      phoneNumberOk
     )
   ) {
     //if someone changed the html from dev tools
@@ -446,7 +435,7 @@ RegisterBtn.addEventListener("click", () => {
     inputCountry.value,
     inputHouseNumber.value,
     inputPhoneNumber.value,
-    BusinessButton.value
+    BusinessButton.checked
   );
   localStorage.setItem("nextUserId", nextUserId + "");
   if (!users) {

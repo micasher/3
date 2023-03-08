@@ -24,7 +24,8 @@ class User {
     city,
     country,
     housenumber,
-    phonenumber
+    phonenumber,
+    isAdmin
   ) {
     this.firstname = firstname;
     this.lastname = lastname;
@@ -37,7 +38,7 @@ class User {
     this.country = country;
     this.housenumber = housenumber;
     this.phonenumber = phonenumber;
-    this.isAdmin = false;
+    this.isAdmin = isAdmin;
     this.id = id;
   }
 }

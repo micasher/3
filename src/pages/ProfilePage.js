@@ -30,7 +30,6 @@ let houseNumberOk = true;
 let zipCodeOk = true;
 let emailOk = true;
 let phoneOk = true;
-let businessOk = true;
 
 window.addEventListener("load", () => {
   let users = localStorage.getItem("users");
@@ -51,7 +50,7 @@ window.addEventListener("load", () => {
       inputZipCode.value = user.zipcode;
       inputEmail.value = user.email;
       inputPhone.value = user.phonenumber;
-      isBiz.value = user.business;
+      isBiz.checked = user.isAdmin;
     }
   }
 
@@ -85,9 +84,6 @@ window.addEventListener("load", () => {
   }
   if (inputPhone.value !== "") {
     checkPhoneinput();
-  }
-  if (isBiz.value !== "") {
-    checkIfBizinput();
   }
 });
 
@@ -346,10 +342,6 @@ const checkPhoneinput = () => {
   checkIfCanEnableBtn();
 };
 
-const checkIfBizinput = () => {
-  businessOk = isBiz.checked;
-};
-
 const checkIfCanEnableBtn = () =>
   (btnProfile.disabled = !(
     firstNameOk &&
@@ -396,28 +388,28 @@ btnProfile.addEventListener("click", () => {
       return;
     }
     if (user) {
-      user.firstname = users.firstname = inputFirstName.value;
-      user.lastname = users.lastname = inputLastName.value;
-      user.email = users.email = inputEmail.value;
-      user.street = users.street = inputStreet.value;
-      user.state = users.state = inputState.value;
-      user.zipcode = users.zipcode = inputZipCode.value;
-      user.city = users.city = inputCity.value;
-      user.country = users.country = inputCountry.value;
-      user.housenumber = users.housenumber = inputHouseNumber.value;
-      user.phonenumber = users.phonenumber = inputPhone.value;
-      user.firstname = token.firstname = inputFirstName.value;
-      user.lastname = token.lastname = inputLastName.value;
-      user.email = token.email = inputEmail.value;
-      user.street = token.street = inputStreet.value;
-      user.state = token.state = inputState.value;
-      user.zipcode = token.zipcode = inputZipCode.value;
-      user.city = token.city = inputCity.value;
-      user.country = token.country = inputCountry.value;
-      user.housenumber = token.housenumber = inputHouseNumber.value;
-      user.phonenumber = token.phonenumber = inputPhone.value;
+      user.firstname = inputFirstName.value;
+      user.lastname = inputLastName.value;
+      user.email = inputEmail.value;
+      user.street = inputStreet.value;
+      user.state = inputState.value;
+      user.zipcode = inputZipCode.value;
+      user.city = inputCity.value;
+      user.country = inputCountry.value;
+      user.housenumber = inputHouseNumber.value;
+      user.phonenumber = inputPhone.value;
+      user.isAdmin = isBiz.checked;
       localStorage.setItem("users", JSON.stringify(users));
-      localStorage.setItem("token", JSON.stringify(token));
+      localStorage.setItem(
+        "token",
+        JSON.stringify({
+          id: user.id,
+          name: user.firstname + " " + user.lastname,
+          email: user.email,
+          isAdmin: user.isAdmin,
+        })
+      );
+
       showToast("Saved");
     }
   }
