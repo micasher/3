@@ -27,7 +27,7 @@ const updatePropertiesGallery = (propertiesArrFromHomePage) => {
   createGallery();
 };
 
-const createCard = (name, description, price, img, id) => {
+const createCard = (name, description, price, img, id, credit) => {
   const adminBtns = `
   <button type="button" class="btn btn-warning w-100" id="propertyGalleryEditBtn-${id}">
     <i class="bi bi-pen-fill"></i> Edit
@@ -45,7 +45,8 @@ const createCard = (name, description, price, img, id) => {
         alt="${name}"
       />
       <div class="card-body">
-        <h5 class="card-title">${name}</h5>
+        <h4 class="card-title">${name}</h4>
+        <h5 class="card-title">Credit: ${credit}</h5>
         <p class="card-text">
           ${description}
         </p>
@@ -107,7 +108,8 @@ const createGallery = () => {
       property.description,
       property.price,
       property.imgUrl,
-      property.id
+      property.id,
+      property.credit
     );
   }
   galleryDiv.innerHTML = innerStr;

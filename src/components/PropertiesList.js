@@ -27,7 +27,7 @@ const updatePropertiesList = (propertiesArrFromHomePage) => {
   createList();
 };
 
-const createItem = (name, description, price, img, id) => {
+const createItem = (name, description, price, img, id, credit) => {
   const adminBtns = `
   <button type="button" class="btn btn-warning w-100" id="propertyListEditBtn-${id}">
     <i class="bi bi-pen-fill"></i> Edit
@@ -44,7 +44,8 @@ const createItem = (name, description, price, img, id) => {
         </div>
         <div class="col-md-8">
         <div class="card-body">
-            <h5 class="card-title">${name}</h5>
+            <h4 class="card-title">${name}</h4>
+            <h5 class="card-title">Credit: ${credit}</h5>
             <h6 class="card-subtitle mb-2 text-muted">
             ${price}
             </h6>
@@ -107,7 +108,8 @@ const createList = () => {
       property.description,
       property.price,
       property.imgUrl,
-      property.id
+      property.id,
+      property.credit
     );
   }
   listDiv.innerHTML = innerStr;
