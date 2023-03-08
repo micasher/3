@@ -43,6 +43,7 @@ const createCard = (name, description, price, img, id, credit) => {
         src="${img}"
         class="card-img-top"
         alt="${name}"
+        id="propertyGalleryImgBtn-${id}"
       />
       <div class="card-body">
         <h4 class="card-title">${name}</h4>
@@ -84,6 +85,9 @@ const handleDeleteBtnClick = (ev) => {
 const handleEditBtnClick = (ev) => {
   showPopup(getIdFromClick(ev));
 };
+const handleimgBtnClick = (ev) => {
+  showPopup(getIdFromClick(ev));
+};
 
 const clearEventListeners = (idKeyword, handleFunction) => {
   //get all old btns
@@ -100,6 +104,7 @@ const createGallery = () => {
   clearEventListeners("propertyGalleryDeleteBtn", handleDeleteBtnClick);
   //clear event listeners for edit btns
   clearEventListeners("propertyGalleryEditBtn", handleEditBtnClick);
+  clearEventListeners("propertyGalleryImgBtn", handleimgBtnClick);
 
   //create new elements and remove old ones
   for (let property of propertiesArr) {
@@ -117,6 +122,7 @@ const createGallery = () => {
   createBtnEventListener("propertyGalleryDeleteBtn", handleDeleteBtnClick);
   // add event listeners for edit btns
   createBtnEventListener("propertyGalleryEditBtn", handleEditBtnClick);
+  createBtnEventListener("propertyGalleryImgBtn", handleimgBtnClick);
 };
 
 //Creates event listener for the delete buttons

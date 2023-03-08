@@ -40,7 +40,7 @@ const createItem = (name, description, price, img, id, credit) => {
   <li class="list-group-item">
     <div class="row">
         <div class="col-md-2">
-        <img src="${img}" class="img-fluid" alt="${name}" />
+        <img src="${img}" id="propertyListImgBtn-${id}" class="img-fluid" alt="${name}" />
         </div>
         <div class="col-md-8">
         <div class="card-body">
@@ -84,6 +84,9 @@ const handleDeleteBtnClick = (ev) => {
 const handleEditBtnClick = (ev) => {
   showPopup(getIdFromClick(ev));
 };
+const handleImgBtnClick = (ev) => {
+  showPopup(getIdFromClick(ev));
+};
 
 const clearEventListeners = (idKeyword, handleFunction) => {
   //get all old btns
@@ -100,6 +103,7 @@ const createList = () => {
   clearEventListeners("propertyListDeleteBtn", handleDeleteBtnClick);
   //clear event listeners for edit btns
   clearEventListeners("propertyListEditBtn", handleEditBtnClick);
+  clearEventListeners("propertyListImgBtn", handleImgBtnClick);
 
   //create new elements and remove old ones
   for (let property of propertiesArr) {
@@ -117,6 +121,7 @@ const createList = () => {
   createBtnEventListener("propertyListDeleteBtn", handleDeleteBtnClick);
   // add event listeners for edit btns
   createBtnEventListener("propertyListEditBtn", handleEditBtnClick);
+  createBtnEventListener("propertyListImgBtn", handleImgBtnClick);
 };
 
 //Creates event listener for the delete buttons
